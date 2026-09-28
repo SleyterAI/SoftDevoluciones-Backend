@@ -1,9 +1,9 @@
 package CV.SoftDevoluciones.User.Service;
 
-import com.ConsigueVentas.TiendaAccesorios.Security.Jwt.JwtService;
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.Login.LoginRequestDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.Login.LoginResponseDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Service.Interface.IAuthService;
+import CV.SoftDevoluciones.Security.Jwt.JwtService;
+import CV.SoftDevoluciones.User.Dto.Login.LoginRequestDto;
+import CV.SoftDevoluciones.User.Dto.Login.LoginResponseDto;
+import CV.SoftDevoluciones.User.Service.Interface.IAuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

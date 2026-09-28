@@ -1,4 +1,4 @@
-package CV.SoftDevoluciones.Product.Entity;
+package CV.SoftDevoluciones.Return.Entity;
 
 import CV.SoftDevoluciones.Order.Entity.OrderDetail;
 import jakarta.persistence.*;
@@ -11,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductReturnDetail {
+public class ReturnDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +24,7 @@ public class ProductReturnDetail {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_return_id", nullable = false)
-    private ProductReturnRequest returnRequest;
+    private ReturnRequest returnRequest;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_detail_id", nullable = false)

@@ -1,6 +1,6 @@
 package CV.SoftDevoluciones.User.Repository;
 
-import com.ConsigueVentas.TiendaAccesorios.User.Entity.User;
+import CV.SoftDevoluciones.User.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,11 +1,11 @@
 package CV.SoftDevoluciones.User.Controller;
 
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.MessageResponseDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.Register.RegisterRequestDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.RolNMessageResponseDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.User.UserResponseDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Entity.User;
-import com.ConsigueVentas.TiendaAccesorios.User.Service.UserService;
+import CV.SoftDevoluciones.User.Dto.MessageResponseDto;
+import CV.SoftDevoluciones.User.Dto.Register.RegisterRequestDto;
+import CV.SoftDevoluciones.User.Dto.RolNMessageResponseDto;
+import CV.SoftDevoluciones.User.Dto.User.UserResponseDto;
+import CV.SoftDevoluciones.User.Entity.User;
+import CV.SoftDevoluciones.User.Service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

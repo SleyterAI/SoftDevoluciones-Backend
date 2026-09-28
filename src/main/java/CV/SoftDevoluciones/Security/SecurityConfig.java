@@ -1,9 +1,7 @@
 package CV.SoftDevoluciones.Security;
 
-
-
-import com.ConsigueVentas.TiendaAccesorios.Security.Jwt.JwtAuthFilter;
-import com.ConsigueVentas.TiendaAccesorios.Security.Service.CustomUserDetailsService;
+import CV.SoftDevoluciones.Security.Jwt.JwtAuthFilter;
+import CV.SoftDevoluciones.Security.Service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 

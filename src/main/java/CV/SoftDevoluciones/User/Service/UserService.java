@@ -1,13 +1,13 @@
 package CV.SoftDevoluciones.User.Service;
 
-import com.ConsigueVentas.TiendaAccesorios.GlobalException.DuplicateResourceException;
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.MessageResponseDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.Register.RegisterRequestDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.RolNMessageResponseDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.User.UserResponseDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Entity.User;
-import com.ConsigueVentas.TiendaAccesorios.User.Repository.UserRepository;
-import com.ConsigueVentas.TiendaAccesorios.User.Service.Interface.IUserService;
+import CV.SoftDevoluciones.GlobalException.DuplicateResourceException;
+import CV.SoftDevoluciones.User.Dto.MessageResponseDto;
+import CV.SoftDevoluciones.User.Dto.Register.RegisterRequestDto;
+import CV.SoftDevoluciones.User.Dto.RolNMessageResponseDto;
+import CV.SoftDevoluciones.User.Dto.User.UserResponseDto;
+import CV.SoftDevoluciones.User.Entity.User;
+import CV.SoftDevoluciones.User.Repository.UserRepository;
+import CV.SoftDevoluciones.User.Service.Interface.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

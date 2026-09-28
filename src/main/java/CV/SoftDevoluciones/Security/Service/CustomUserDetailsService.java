@@ -1,8 +1,8 @@
 package CV.SoftDevoluciones.Security.Service;
 
 
-import com.ConsigueVentas.TiendaAccesorios.User.Entity.User;
-import com.ConsigueVentas.TiendaAccesorios.User.Repository.UserRepository;
+import CV.SoftDevoluciones.User.Entity.User;
+import CV.SoftDevoluciones.User.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

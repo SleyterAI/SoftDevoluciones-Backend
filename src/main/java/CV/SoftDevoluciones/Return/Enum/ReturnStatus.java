@@ -1,6 +1,6 @@
-package CV.SoftDevoluciones.Product.Enum;
+package CV.SoftDevoluciones.Return.Enum;
 
-public enum ProductReturnStatus {
+public enum ReturnStatus {
     SOLICITADO,
     EN_REVISION,
     APROBADO,

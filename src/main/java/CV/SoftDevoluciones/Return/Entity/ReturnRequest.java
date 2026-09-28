@@ -1,7 +1,7 @@
-package CV.SoftDevoluciones.Product.Entity;
+package CV.SoftDevoluciones.Return.Entity;
 
 import CV.SoftDevoluciones.Order.Entity.Order;
-import CV.SoftDevoluciones.Product.Enum.ProductReturnStatus;
+import CV.SoftDevoluciones.Return.Enum.ReturnStatus;
 import CV.SoftDevoluciones.User.Entity.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductReturnRequest {
+public class ReturnRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class ProductReturnRequest {
     private LocalDateTime requestDate;
 
     @Enumerated(EnumType.STRING)
-    private ProductReturnStatus status;
+    private ReturnStatus status;
 
     @Column(nullable = false, length = 30)
     private String reason;

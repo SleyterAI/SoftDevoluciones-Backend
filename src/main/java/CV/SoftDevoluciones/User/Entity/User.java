@@ -1,7 +1,6 @@
 package CV.SoftDevoluciones.User.Entity;
 
 import CV.SoftDevoluciones.Order.Entity.Order;
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

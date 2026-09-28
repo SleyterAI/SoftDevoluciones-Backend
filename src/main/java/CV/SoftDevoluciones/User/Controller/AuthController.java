@@ -1,8 +1,8 @@
 package CV.SoftDevoluciones.User.Controller;
 
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.Login.LoginRequestDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.Login.LoginResponseDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Service.AuthService;
+import CV.SoftDevoluciones.User.Dto.Login.LoginRequestDto;
+import CV.SoftDevoluciones.User.Dto.Login.LoginResponseDto;
+import CV.SoftDevoluciones.User.Service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
