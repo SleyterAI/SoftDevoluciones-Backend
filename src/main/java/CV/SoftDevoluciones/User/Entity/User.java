@@ -27,9 +27,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, length = 30)
+    @Enumerated(EnumType.STRING)
     private UserRole userRole;
-    //"ADMIN", "USER"
+    //CLIENTE, OPERADOR, ADMIN
 
     @OneToMany(mappedBy = "user")
     private List<Order> orders = new ArrayList<>();

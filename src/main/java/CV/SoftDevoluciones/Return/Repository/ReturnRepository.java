@@ -12,4 +12,6 @@ public interface ReturnRepository extends JpaRepository<Product, Long> {
     List<ProductResponseDto> findByCategory_Name(String categoryName);
 
     List<ProductResponseDto> findByVisible(Boolean visible);
+
+    Long find
 }

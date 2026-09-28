@@ -22,19 +22,22 @@ public class ReturnService implements IReturnService {
     @Override
     public ReturnRequest createReturn(Authentication authentication, ReturnRequestRequest returnRequestRequest) {
         //order id
-        authentication.getE
+        String email = authentication.getName();
+        Long order_id = returnRepository.findUserIdByEmail(email);
+        Order order;
+        order.setId
         //user id
 
-        ReturnRequest returnProduct = ReturnRequest.builder()
+        ReturnRequest returnRequest = ReturnRequest.builder()
                 .requestDate(LocalDateTime.now())
                 .status(ReturnStatus.SOLICITADO)
                 .reason(returnRequestRequest.getReason())
                 .comment(returnRequestRequest.getComment())
                 .operatorNotes(returnRequestRequest.getOperatorNotes())
-                .order(returnRequest.getOrder())
-                .user(returnRequest.getUser())
+                .order(order_id)
+                .user()
                 .build();
-        return returnRepository.save(returnProduct);
+        return returnRepository.save(returnRequest);
     }
 
     @Override
