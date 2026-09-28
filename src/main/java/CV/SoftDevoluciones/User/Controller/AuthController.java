@@ -1,7 +1,7 @@
 package CV.SoftDevoluciones.User.Controller;
 
-import CV.SoftDevoluciones.User.Dto.Login.LoginRequestDto;
-import CV.SoftDevoluciones.User.Dto.Login.LoginResponseDto;
+import CV.SoftDevoluciones.User.Dto.Login.LoginRequest;
+import CV.SoftDevoluciones.User.Dto.Login.LoginResponse;
 import CV.SoftDevoluciones.User.Service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDto> login(@Valid @RequestBody LoginRequestDto loginRequestDto) {
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest loginRequestDto) {
         return ResponseEntity.ok(authService.login(loginRequestDto));
     }
 }

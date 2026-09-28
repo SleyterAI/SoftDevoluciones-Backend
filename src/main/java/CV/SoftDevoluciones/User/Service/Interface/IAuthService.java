@@ -1,9 +1,9 @@
 package CV.SoftDevoluciones.User.Service.Interface;
 
 
-import CV.SoftDevoluciones.User.Dto.Login.LoginRequestDto;
-import CV.SoftDevoluciones.User.Dto.Login.LoginResponseDto;
+import CV.SoftDevoluciones.User.Dto.Login.LoginRequest;
+import CV.SoftDevoluciones.User.Dto.Login.LoginResponse;
 
 public interface IAuthService {
-    LoginResponseDto login(LoginRequestDto loginRequestDto);
+    LoginResponse login(LoginRequest loginRequestDto);
 }

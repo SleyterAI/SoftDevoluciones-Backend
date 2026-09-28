@@ -5,6 +5,7 @@ import CV.SoftDevoluciones.User.Dto.Register.RegisterRequestDto;
 import CV.SoftDevoluciones.User.Dto.RolNMessageResponseDto;
 import CV.SoftDevoluciones.User.Dto.User.UserResponseDto;
 import CV.SoftDevoluciones.User.Entity.User;
+import CV.SoftDevoluciones.User.Enum.UserRole;
 import CV.SoftDevoluciones.User.Service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +37,9 @@ public class UserController {
     @PatchMapping("/{id}/role")
     /*@PreAuthorize("hasRole('ADMIN')")*/
     public ResponseEntity<RolNMessageResponseDto> updateRole(
-            @PathVariable Long id, @RequestBody User newRole) {
+            @PathVariable Long id, @RequestBody UserRole newRole) {
 
-        return ResponseEntity.ok(userService.updateRole(id, newRole.getRole()));
+        return ResponseEntity.ok(userService.updateRole(id, newRole));
     }
 
     @DeleteMapping("/{id}")

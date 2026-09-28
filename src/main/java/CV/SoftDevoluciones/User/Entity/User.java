@@ -1,6 +1,7 @@
 package CV.SoftDevoluciones.User.Entity;
 
 import CV.SoftDevoluciones.Order.Entity.Order;
+import CV.SoftDevoluciones.User.Enum.UserRole;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +28,7 @@ public class User {
     private String password;
 
     @Column(nullable = false, length = 30)
-    private String role;
+    private UserRole userRole;
     //"ADMIN", "USER"
 
     @OneToMany(mappedBy = "user")

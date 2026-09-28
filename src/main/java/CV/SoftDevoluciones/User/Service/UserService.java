@@ -6,6 +6,7 @@ import CV.SoftDevoluciones.User.Dto.Register.RegisterRequestDto;
 import CV.SoftDevoluciones.User.Dto.RolNMessageResponseDto;
 import CV.SoftDevoluciones.User.Dto.User.UserResponseDto;
 import CV.SoftDevoluciones.User.Entity.User;
+import CV.SoftDevoluciones.User.Enum.UserRole;
 import CV.SoftDevoluciones.User.Repository.UserRepository;
 import CV.SoftDevoluciones.User.Service.Interface.IUserService;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +37,7 @@ public class UserService implements IUserService {
         user.setPassword(
                 passwordEncoder.encode(registerRequestDto.getPassword())
         );
-        user.setRole("ADMIN");
+        user.setUserRole(UserRole.CLIENTE);
 
         userRepository.save(user);
 
@@ -51,7 +52,7 @@ public class UserService implements IUserService {
                         user.getId(),
                         user.getUsername(),
                         user.getEmail(),
-                        user.getRole()
+                        user.getUserRole()
                 ))
                 .toList();
     }
@@ -75,12 +76,12 @@ public class UserService implements IUserService {
         return new MessageResponseDto("User deleted correctly");
     }
 
-    public RolNMessageResponseDto updateRole(Long id, String role) {
+    public RolNMessageResponseDto updateRole(Long id, UserRole role) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User doesnt exist"));
 
-        user.setRole(role);
+        user.setUserRole(role);
         User promotedUser = userRepository.save(user);
-        return new RolNMessageResponseDto("User promoted correctly: ", promotedUser.getRole());
+        return new RolNMessageResponseDto("User promoted correctly: ", promotedUser.getUserRole());
     }
 }
