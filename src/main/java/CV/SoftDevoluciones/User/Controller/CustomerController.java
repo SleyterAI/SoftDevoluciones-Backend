@@ -1,9 +1,5 @@
 package CV.SoftDevoluciones.User.Controller;
 
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.Customer.CustomerRequestDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.Customer.CustomerResponseDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Dto.Customer.CustomerUpdateRequestDto;
-import com.ConsigueVentas.TiendaAccesorios.User.Service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,10 +8,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/customer")
 @RequiredArgsConstructor
 public class CustomerController {
-
+/*
     private final CustomerService customerService;
 
     @GetMapping("/me")
@@ -41,5 +36,5 @@ public class CustomerController {
     public ResponseEntity<CustomerResponseDto> updateCustomer(
             Authentication authentication, @Valid @RequestBody CustomerUpdateRequestDto updateRequest) {
         return ResponseEntity.ok(customerService.updateCustomer(authentication.getName(), updateRequest));
-    }
+    }*/
 }

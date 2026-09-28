@@ -1,9 +1,9 @@
 package CV.SoftDevoluciones.Category.Controller;
 
-import com.ConsigueVentas.TiendaAccesorios.Category.Dto.CategoryRequestDto;
-import com.ConsigueVentas.TiendaAccesorios.Category.Dto.CategoryResponseDto;
-import com.ConsigueVentas.TiendaAccesorios.Category.Entity.Category;
-import com.ConsigueVentas.TiendaAccesorios.Category.Service.CategoryService;
+import CV.SoftDevoluciones.Category.Dto.CategoryRequestDto;
+import CV.SoftDevoluciones.Category.Dto.CategoryResponseDto;
+import CV.SoftDevoluciones.Category.Entity.Category;
+import CV.SoftDevoluciones.Category.Service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

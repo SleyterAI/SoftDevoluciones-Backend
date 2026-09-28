@@ -1,11 +1,12 @@
 package CV.SoftDevoluciones.Category.Service;
 
-import com.ConsigueVentas.TiendaAccesorios.Category.Dto.CategoryRequestDto;
-import com.ConsigueVentas.TiendaAccesorios.Category.Dto.CategoryResponseDto;
-import com.ConsigueVentas.TiendaAccesorios.Category.Entity.Category;
-import com.ConsigueVentas.TiendaAccesorios.Category.Mapper.CategoryMapper;
-import com.ConsigueVentas.TiendaAccesorios.Category.Repository.CategoryRepository;
-import com.ConsigueVentas.TiendaAccesorios.Category.Service.Interface.ICategoryService;
+
+import CV.SoftDevoluciones.Category.Dto.CategoryRequestDto;
+import CV.SoftDevoluciones.Category.Dto.CategoryResponseDto;
+import CV.SoftDevoluciones.Category.Entity.Category;
+import CV.SoftDevoluciones.Category.Mapper.CategoryMapper;
+import CV.SoftDevoluciones.Category.Repository.CategoryRepository;
+import CV.SoftDevoluciones.Category.Service.Interface.ICategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

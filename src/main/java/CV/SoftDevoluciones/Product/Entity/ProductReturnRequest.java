@@ -1,6 +1,7 @@
 package CV.SoftDevoluciones.Product.Entity;
 
 import CV.SoftDevoluciones.Order.Entity.Order;
+import CV.SoftDevoluciones.Product.Enum.ProductReturnStatus;
 import CV.SoftDevoluciones.User.Entity.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,7 +26,7 @@ public class ProductReturnRequest {
     private LocalDateTime requestDate;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private ProductReturnStatus status;
 
     @Column(nullable = false, length = 30)
     private String reason;

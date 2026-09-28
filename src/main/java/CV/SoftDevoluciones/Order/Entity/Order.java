@@ -1,5 +1,6 @@
 package CV.SoftDevoluciones.Order.Entity;
 
+import CV.SoftDevoluciones.Order.Enum.OrderStatus;
 import CV.SoftDevoluciones.User.Entity.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
@@ -37,12 +38,16 @@ public class Order {
     @Column(nullable = false)
     private LocalDate date;
 
-    @Column(nullable = false, length = 30)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
     //pendiente, en preparacion, entregado
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal total;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @OneToMany(
             mappedBy = "order",
@@ -50,8 +55,4 @@ public class Order {
             orphanRemoval = true
     )
     private List<OrderDetail> orderDetail = new ArrayList<>();
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
 }

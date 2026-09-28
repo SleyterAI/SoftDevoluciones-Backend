@@ -1,11 +1,8 @@
 package CV.SoftDevoluciones.Product.Entity;
 
 import CV.SoftDevoluciones.Order.Entity.OrderDetail;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "ProductReturnDetails")
@@ -15,9 +12,21 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class ProductReturnDetail {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime quantity;
-    private String amount;
+
+    @Column(nullable = false)
+    private Integer quantity;
+
+
+    /*private String amount;*/ //analizar
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_return_id", nullable = false)
     private ProductReturnRequest returnRequest;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_detail_id", nullable = false)
     private OrderDetail orderDetail;
 }

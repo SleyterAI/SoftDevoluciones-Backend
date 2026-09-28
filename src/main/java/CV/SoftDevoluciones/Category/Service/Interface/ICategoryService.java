@@ -1,8 +1,9 @@
 package CV.SoftDevoluciones.Category.Service.Interface;
 
-import com.ConsigueVentas.TiendaAccesorios.Category.Dto.CategoryRequestDto;
-import com.ConsigueVentas.TiendaAccesorios.Category.Dto.CategoryResponseDto;
-import com.ConsigueVentas.TiendaAccesorios.Category.Entity.Category;
+
+import CV.SoftDevoluciones.Category.Dto.CategoryRequestDto;
+import CV.SoftDevoluciones.Category.Dto.CategoryResponseDto;
+import CV.SoftDevoluciones.Category.Entity.Category;
 
 import java.util.List;
 
