@@ -1,5 +1,6 @@
 package CV.SoftDevoluciones.Return.Service.Interface;
 
+import CV.SoftDevoluciones.Return.Dto.ReturnRequestRequest;
 import CV.SoftDevoluciones.Return.Entity.ReturnDetail;
 import CV.SoftDevoluciones.Return.Entity.ReturnRequest;
 
@@ -8,7 +9,7 @@ import java.util.List;
 public interface IReturnService {
 
     //create return
-    ReturnRequest createReturn(ReturnRequest returnRequest);
+    ReturnRequest createReturn(ReturnRequestRequest returnRequestRequest);
 
     //read return
     List<ReturnDetail> getUserReturnByEmail(String email);

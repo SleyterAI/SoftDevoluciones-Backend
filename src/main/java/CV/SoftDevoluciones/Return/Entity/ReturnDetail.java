@@ -19,9 +19,6 @@ public class ReturnDetail {
     @Column(nullable = false)
     private Integer quantity;
 
-
-    /*private String amount;*/ //analizar
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_return_id", nullable = false)
     private ReturnRequest returnRequest;

@@ -37,9 +37,6 @@ public class ReturnRequest {
     @Column(nullable = false, length = 30)
     private String operatorNotes;
 
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal amount;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
