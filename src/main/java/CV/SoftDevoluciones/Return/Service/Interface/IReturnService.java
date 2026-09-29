@@ -9,10 +9,11 @@ import java.util.List;
 public interface IReturnService {
 
     //create return
-    ReturnRequest createReturn(String email, ReturnRequestRequest returnRequestRequest);
+    ReturnRequest createReturnRequest(String email, ReturnRequestRequest returnRequestRequest);
 
     //read return
-    List<ReturnDetail> getUserReturnsByEmail(String email);
+    List<ReturnRequest> getUserReturnRequestsByEmail(String email);
+
     ReturnDetail getReturnById(Long id);
 
     //filtros y paginacion ADMIN
@@ -20,7 +21,5 @@ public interface IReturnService {
 
     //update return PATCH ADMIN
     String updateReturnStatus(Long id);
-
-    //delete return
 
 }

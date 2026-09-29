@@ -25,6 +25,6 @@ public class ReturnController {
                                                        @Valid @RequestBody ReturnRequestRequest returnRequestRequest) {
         String email = authentication.getName();
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(returnService.createReturn(email, returnRequestRequest));
+                .body(returnService.createReturnRequest(email, returnRequestRequest));
     }
 }

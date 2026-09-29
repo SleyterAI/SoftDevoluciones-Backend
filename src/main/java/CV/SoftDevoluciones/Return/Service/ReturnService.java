@@ -6,29 +6,25 @@ import CV.SoftDevoluciones.Return.Dto.ReturnRequestRequest;
 import CV.SoftDevoluciones.Return.Entity.ReturnDetail;
 import CV.SoftDevoluciones.Return.Entity.ReturnRequest;
 import CV.SoftDevoluciones.Return.Enum.ReturnStatus;
-import CV.SoftDevoluciones.Return.Repository.ReturnRepository;
+import CV.SoftDevoluciones.Return.Repository.ReturnRequestRepository;
 import CV.SoftDevoluciones.Return.Service.Interface.IReturnService;
-import CV.SoftDevoluciones.User.Entity.User;
 import CV.SoftDevoluciones.User.Repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ReturnService implements IReturnService {
 
-    private final ReturnRepository returnRepository;
+    private final ReturnRequestRepository returnRequestRepository;
     private final OrderRepository orderRepository;
-    private final UserRepository userRepository;
 
     @Override
-    public ReturnRequest createReturn(String email, ReturnRequestRequest returnRequestRequest) {
+    public ReturnRequest createReturnRequest(String email, ReturnRequestRequest returnRequestRequest) {
         Order order = orderRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException("Order not found"));
 
@@ -47,13 +43,12 @@ public class ReturnService implements IReturnService {
                 .build();
 
         returnRequest.setReturnDetail(returnDetail);
-        return returnRepository.save(returnRequest);
+        return returnRequestRepository.save(returnRequest);
     }
 
     @Override
-    public List<ReturnDetail> getUserReturnsByEmail(String email) {
-        returnRepository.
-        return List.of();
+    public List<ReturnRequest> getUserReturnRequestsByEmail(String email) {
+        return returnRequestRepository.findByOrderUserEmail(email);
     }
 
     @Override
