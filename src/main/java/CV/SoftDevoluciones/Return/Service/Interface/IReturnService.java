@@ -9,7 +9,7 @@ import java.util.List;
 public interface IReturnService {
 
     //create return
-    ReturnRequest createReturn(ReturnRequestRequest returnRequestRequest);
+    ReturnRequest createReturn(String email, ReturnRequestRequest returnRequestRequest);
 
     //read return
     List<ReturnDetail> getUserReturnByEmail(String email);
