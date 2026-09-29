@@ -14,7 +14,7 @@ public interface IReturnService {
     //read return
     List<ReturnRequest> getUserReturnRequestsByEmail(String email);
 
-    ReturnDetail getReturnById(Long id);
+    ReturnRequest getReturnById(Long id);
 
     //filtros y paginacion ADMIN
     ReturnDetail getAllReturn();

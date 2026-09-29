@@ -52,8 +52,9 @@ public class ReturnService implements IReturnService {
     }
 
     @Override
-    public ReturnDetail getReturnById(Long id) {
-        return null;
+    public ReturnRequest getReturnById(Long id) {
+        return returnRequestRepository.findById(id)
+                .orElseThrow();
     }
 
     @Override
