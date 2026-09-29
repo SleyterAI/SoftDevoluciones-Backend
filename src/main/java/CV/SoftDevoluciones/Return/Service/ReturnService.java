@@ -37,15 +37,22 @@ public class ReturnService implements IReturnService {
                 .status(ReturnStatus.SOLICITADO)
                 .reason(returnRequestRequest.getReason())
                 .comment(returnRequestRequest.getComment())
-                .operatorNotes(returnRequestRequest.getOperatorNotes())
+                //.operatorNotes() null para CLIENTE
                 .order(order)
-                .user(order.getUser())
                 .build();
+
+        ReturnDetail returnDetail = ReturnDetail.builder()
+                .quantity(returnRequestRequest.getQuantity())
+                .returnRequest(returnRequest)
+                .build();
+
+        returnRequest.setReturnDetail(returnDetail);
         return returnRepository.save(returnRequest);
     }
 
     @Override
-    public List<ReturnDetail> getUserReturnByEmail(String email) {
+    public List<ReturnDetail> getUserReturnsByEmail(String email) {
+        returnRepository.
         return List.of();
     }
 

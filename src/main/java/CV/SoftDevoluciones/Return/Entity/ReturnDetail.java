@@ -1,5 +1,6 @@
 package CV.SoftDevoluciones.Return.Entity;
 
+import CV.SoftDevoluciones.Order.Entity.Order;
 import CV.SoftDevoluciones.Order.Entity.OrderDetail;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,8 +23,4 @@ public class ReturnDetail {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_return_id", nullable = false)
     private ReturnRequest returnRequest;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_detail_id", nullable = false)
-    private OrderDetail orderDetail;
 }

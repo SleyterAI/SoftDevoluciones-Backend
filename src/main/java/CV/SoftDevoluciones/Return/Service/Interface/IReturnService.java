@@ -12,7 +12,7 @@ public interface IReturnService {
     ReturnRequest createReturn(String email, ReturnRequestRequest returnRequestRequest);
 
     //read return
-    List<ReturnDetail> getUserReturnByEmail(String email);
+    List<ReturnDetail> getUserReturnsByEmail(String email);
     ReturnDetail getReturnById(Long id);
 
     //filtros y paginacion ADMIN
