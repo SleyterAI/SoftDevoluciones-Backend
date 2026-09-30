@@ -11,10 +11,6 @@ public interface IReturnClientService {
     Return createReturnRequest(String email, ReturnRequest returnRequest);
 
     //read
-    Return getReturnClientById(Long id);
     List<ReturnClientResponse> getUserReturnRequestsByEmail(String email);
-
-
-
-
+    ReturnClientResponse getReturnClientById(Long id);
 }

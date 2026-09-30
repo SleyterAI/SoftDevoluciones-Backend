@@ -15,9 +15,4 @@ public interface IOrderService {
     List<OrderSummaryResponseDto> getAllOrder();
     OrderResponseDto getOrderById(Long id);
 
-    //Update
-    Order updateOrder(Long id, Order order);
-
-    //Delete
-    void deleteOrder(Long id);
 }

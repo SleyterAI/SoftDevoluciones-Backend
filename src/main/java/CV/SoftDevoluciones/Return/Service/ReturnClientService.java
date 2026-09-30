@@ -84,9 +84,17 @@ public class ReturnClientService implements IReturnClientService {
     }
 
     @Override
-    public Return getReturnClientById(Long id) {
-        return returnRepository.findById(id)
+    public ReturnClientResponse getReturnClientById(Long id) {
+        Return aReturn = returnRepository.findById(id)
                 .orElseThrow();
+        return ReturnClientResponse.builder()
+                .return_id(aReturn.getId())
+                .order_id(aReturn.getOrder().getId())
+                .date(aReturn.getRequestDate())
+                .productsQuantity(aReturn.getReturnDetail().getQuantity())
+                .status(aReturn.getStatus())
+                .returnTotal(aReturn.getOrder().getTotal())
+                .build();
     }
 
 }

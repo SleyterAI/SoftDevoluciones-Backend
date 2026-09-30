@@ -1,7 +1,5 @@
 package CV.SoftDevoluciones.Return.Controller;
 
-
-import CV.SoftDevoluciones.Return.Dto.Return.ReturnAdminResponse;
 import CV.SoftDevoluciones.Return.Dto.Return.ReturnClientResponse;
 import CV.SoftDevoluciones.Return.Dto.Return.ReturnRequest;
 import CV.SoftDevoluciones.Return.Entity.Return;
@@ -10,7 +8,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,10 +37,7 @@ public class ReturnClientController {
 
     //GET: getreturnbyid - ADMIN -OPERATOR -CLIENTE
     @GetMapping("/{id}")
-    public ResponseEntity<Return> getReturnClientById(@PathVariable Long id) {
+    public ResponseEntity<ReturnClientResponse> getReturnClientById(@PathVariable Long id) {
         return ResponseEntity.ok(returnClientService.getReturnClientById(id));
     }
-
-
-
 }

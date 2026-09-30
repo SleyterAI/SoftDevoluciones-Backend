@@ -43,15 +43,6 @@ public class OrderService implements IOrderService {
 
         return orderMapper.toOrderDto(order);
     }
-
-    @Override
-    public Order updateOrder(Long id, Order order) {
-        return null;
-    }
-
-    @Override
-    public void deleteOrder(Long id) {
-
-    }
+    
 
 }
