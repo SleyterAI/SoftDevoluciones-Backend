@@ -84,7 +84,16 @@ public class ReturnService implements IReturnService {
     }
 
     @Override
-    public String updateReturnStatus(Long id) {
-        return "";
+    public Return updateReturnStatus(Long id, ReturnStatus newEstado) {
+        Return aReturn = returnRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("El ticket no existe"));
+
+        if (!aReturn.getStatus().validateWorkflow(newEstado)) {
+            throw new RuntimeException(
+                    "No se puede cambiar de " + aReturn.getStatus() + " a " + newEstado
+            );
+        }
+        aReturn.setStatus(newEstado);
+        return returnRepository.save(aReturn);
     }
 }

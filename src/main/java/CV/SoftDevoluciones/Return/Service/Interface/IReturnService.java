@@ -3,6 +3,7 @@ package CV.SoftDevoluciones.Return.Service.Interface;
 import CV.SoftDevoluciones.Return.Dto.Return.ReturnRequest;
 import CV.SoftDevoluciones.Return.Entity.Return;
 import CV.SoftDevoluciones.Return.Entity.ReturnDetail;
+import CV.SoftDevoluciones.Return.Enum.ReturnStatus;
 
 import java.util.List;
 
@@ -20,6 +21,6 @@ public interface IReturnService {
     ReturnDetail getAllReturn();
 
     //update return PATCH ADMIN
-    String updateReturnStatus(Long id);
+    Return updateReturnStatus(Long id, ReturnStatus newEstado);
 
 }

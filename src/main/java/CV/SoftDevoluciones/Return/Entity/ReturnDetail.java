@@ -23,6 +23,7 @@ public class ReturnDetail {
     @JoinColumn(name = "order_detail_id", nullable = false)
     private OrderDetail orderDetail;
 
-    @OneToOne(mappedBy = "returnDetail")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "return_id")
     private Return aReturn;
 }

@@ -43,7 +43,7 @@ public class Return {
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
     //---------------------------------------------------------------
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "return_detail_id")
+
+    @OneToOne(mappedBy = "aReturn")
     private ReturnDetail returnDetail;
 }
