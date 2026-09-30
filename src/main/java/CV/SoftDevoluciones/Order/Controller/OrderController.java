@@ -5,6 +5,7 @@ import CV.SoftDevoluciones.Order.Dto.OrderSummary.OrderSummaryResponseDto;
 import CV.SoftDevoluciones.Order.Service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,5 +25,11 @@ public class OrderController {
     @GetMapping("/{id}")
     public ResponseEntity<OrderResponseDto> getOrderById(@PathVariable Long id) {
         return ResponseEntity.ok(orderService.getOrderById(id));
+    }
+
+    @GetMapping("/my-orders")
+    public ResponseEntity<List<OrderSummaryResponseDto>> getAllClientOrders(Authentication authentication) {
+        String email = authentication.getName();
+        return ResponseEntity.ok(orderService.getAllClientOrders(email));
     }
 }
