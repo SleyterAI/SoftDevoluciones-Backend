@@ -1,15 +1,17 @@
 package CV.SoftDevoluciones.Return.Service;
 
 import CV.SoftDevoluciones.Order.Entity.Order;
+import CV.SoftDevoluciones.Order.Entity.OrderDetail;
+import CV.SoftDevoluciones.Order.Repository.OrderDetailRepository;
 import CV.SoftDevoluciones.Order.Repository.OrderRepository;
-import CV.SoftDevoluciones.Return.Dto.ReturnRequestRequest;
+import CV.SoftDevoluciones.Return.Dto.Return.ReturnRequest;
+import CV.SoftDevoluciones.Return.Entity.Return;
 import CV.SoftDevoluciones.Return.Entity.ReturnDetail;
-import CV.SoftDevoluciones.Return.Entity.ReturnRequest;
 import CV.SoftDevoluciones.Return.Enum.ReturnStatus;
-import CV.SoftDevoluciones.Return.Repository.ReturnRequestRepository;
+import CV.SoftDevoluciones.Return.Repository.ReturnRepository;
 import CV.SoftDevoluciones.Return.Service.Interface.IReturnService;
-import CV.SoftDevoluciones.User.Repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,42 +20,61 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ReturnService implements IReturnService {
 
-    private final ReturnRequestRepository returnRequestRepository;
+    private final ReturnRepository returnRepository;
     private final OrderRepository orderRepository;
+    private final OrderDetailRepository orderDetailRepository;
 
     @Override
-    public ReturnRequest createReturnRequest(String email, ReturnRequestRequest returnRequestRequest) {
-        Order order = orderRepository.findByEmail(email)
+    public Return createReturnRequest(String email, ReturnRequest request) {
+
+        /*
+        * se crea return y se asigna datos no enviados y enviados
+        * despues se crea returndetail y se asigna datos datos
+        * se asigna tambien el return q se tiene hasta el momento
+        * despues se agrega returndetail a return
+        * se guarda return en bd
+        * */
+        Order order = orderRepository.findByUserEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException("Order not found"));
 
-        ReturnRequest returnRequest = ReturnRequest.builder()
+        OrderDetail orderDetail = orderDetailRepository.findById(order.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Order detail not found"));
+
+        if (!orderDetail.getOrder().getId().equals(order.getId())) {
+            throw new IllegalArgumentException("The order detail does not belong to this order");
+        }
+
+        Return aReturn = Return.builder()
                 .requestDate(LocalDateTime.now())
                 .status(ReturnStatus.SOLICITADO)
-                .reason(returnRequestRequest.getReason())
-                .comment(returnRequestRequest.getComment())
-                //.operatorNotes() null para CLIENTE
+                .reason(request.getReason())
+                .comment(request.getComment())
+                .operatorNotes("Sin comentarios")
+                .amount(request.getAmount())
                 .order(order)
                 .build();
 
         ReturnDetail returnDetail = ReturnDetail.builder()
-                .quantity(returnRequestRequest.getQuantity())
-                .returnRequest(returnRequest)
+                .quantity(request.getReturnDetailRequest().getQuantity()) //problema
+                .orderDetail(orderDetail)
+                .aReturn(aReturn)
                 .build();
 
-        returnRequest.setReturnDetail(returnDetail);
-        return returnRequestRepository.save(returnRequest);
+        aReturn.setReturnDetail(returnDetail);
+        return returnRepository.save(aReturn);
     }
 
     @Override
-    public List<ReturnRequest> getUserReturnRequestsByEmail(String email) {
-        return returnRequestRepository.findByOrderUserEmail(email);
+    public List<Return> getUserReturnRequestsByEmail(String email) {
+        return returnRepository.findByOrderUserEmail(email);
     }
 
     @Override
-    public ReturnRequest getReturnById(Long id) {
-        return returnRequestRepository.findById(id)
+    public Return getReturnById(Long id) {
+        return returnRepository.findById(id)
                 .orElseThrow();
     }
 

@@ -1,24 +1,21 @@
 package CV.SoftDevoluciones.Return.Entity;
 
 import CV.SoftDevoluciones.Order.Entity.Order;
-import CV.SoftDevoluciones.Order.Entity.OrderDetail;
 import CV.SoftDevoluciones.Return.Enum.ReturnStatus;
-import CV.SoftDevoluciones.User.Entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
-@Table(name = "ProductReturnRequests")
+@Table(name = "returns")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ReturnRequest {
+public class Return {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,10 +36,14 @@ public class ReturnRequest {
     @Column(length = 50)
     private String operatorNotes;
 
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal amount;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
-
-    @OneToMany(mappedBy = "return_detail")
+    //---------------------------------------------------------------
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "return_detail_id")
     private ReturnDetail returnDetail;
 }

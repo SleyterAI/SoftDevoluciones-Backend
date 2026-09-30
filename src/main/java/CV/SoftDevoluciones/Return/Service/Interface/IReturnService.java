@@ -1,20 +1,20 @@
 package CV.SoftDevoluciones.Return.Service.Interface;
 
-import CV.SoftDevoluciones.Return.Dto.ReturnRequestRequest;
+import CV.SoftDevoluciones.Return.Dto.Return.ReturnRequest;
+import CV.SoftDevoluciones.Return.Entity.Return;
 import CV.SoftDevoluciones.Return.Entity.ReturnDetail;
-import CV.SoftDevoluciones.Return.Entity.ReturnRequest;
 
 import java.util.List;
 
 public interface IReturnService {
 
     //create return
-    ReturnRequest createReturnRequest(String email, ReturnRequestRequest returnRequestRequest);
+    Return createReturnRequest(String email, ReturnRequest returnRequest);
 
     //read return
-    List<ReturnRequest> getUserReturnRequestsByEmail(String email);
+    List<Return> getUserReturnRequestsByEmail(String email);
 
-    ReturnRequest getReturnById(Long id);
+    Return getReturnById(Long id);
 
     //filtros y paginacion ADMIN
     ReturnDetail getAllReturn();

@@ -61,11 +61,9 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/user/**").permitAll()
-                        .requestMatchers("/api/category/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()      // login y registro: público
                         .requestMatchers("/api/product/**").permitAll() // ver productos: público
-                        .requestMatchers("/api/customer/**").permitAll()
-                        .requestMatchers("/api/cart/**").permitAll()
+                        .requestMatchers("/api/return/**").permitAll()
                         .requestMatchers("/api/order/**").authenticated() // pedidos: requiere login
                         .anyRequest().authenticated()
                 )

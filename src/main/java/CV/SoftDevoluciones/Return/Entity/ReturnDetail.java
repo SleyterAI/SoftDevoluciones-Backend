@@ -1,12 +1,11 @@
 package CV.SoftDevoluciones.Return.Entity;
 
-import CV.SoftDevoluciones.Order.Entity.Order;
 import CV.SoftDevoluciones.Order.Entity.OrderDetail;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "ProductReturnDetails")
+@Table(name = "return_details")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,6 +20,9 @@ public class ReturnDetail {
     private Integer quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_return_id", nullable = false)
-    private ReturnRequest returnRequest;
+    @JoinColumn(name = "order_detail_id", nullable = false)
+    private OrderDetail orderDetail;
+
+    @OneToOne(mappedBy = "returnDetail")
+    private Return aReturn;
 }

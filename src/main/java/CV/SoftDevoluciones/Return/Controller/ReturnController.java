@@ -1,8 +1,8 @@
 package CV.SoftDevoluciones.Return.Controller;
 
 
-import CV.SoftDevoluciones.Return.Dto.ReturnRequestRequest;
-import CV.SoftDevoluciones.Return.Entity.ReturnRequest;
+import CV.SoftDevoluciones.Return.Dto.Return.ReturnRequest;
+import CV.SoftDevoluciones.Return.Entity.Return;
 import CV.SoftDevoluciones.Return.Service.ReturnService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,10 +21,19 @@ public class ReturnController {
 
     private final ReturnService returnService;
     @PostMapping
-    public ResponseEntity<ReturnRequest> createTicket(Authentication authentication,
-                                                       @Valid @RequestBody ReturnRequestRequest returnRequestRequest) {
+    public ResponseEntity<Return> createTicket(Authentication authentication,
+                                               @Valid @RequestBody ReturnRequest returnRequest) {
         String email = authentication.getName();
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(returnService.createReturnRequest(email, returnRequestRequest));
+                .body(returnService.createReturnRequest(email, returnRequest));
     }
+
+    //GET:  returns del cliente auth auth - CLIENTE
+
+    //GET: getreturnbyid - ADMIN -OPERATOR
+
+    //GET: getalldevoluciones?estado=xxxxx; paginacion - verificar si se pueden añadir mas filtros
+    //ADMIN
+
+    //PATCH: estado -> workflow, referencia soporteYa
 }
