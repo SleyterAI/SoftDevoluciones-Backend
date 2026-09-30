@@ -4,12 +4,13 @@ import CV.SoftDevoluciones.Order.Entity.Order;
 import CV.SoftDevoluciones.Order.Entity.OrderDetail;
 import CV.SoftDevoluciones.Order.Repository.OrderDetailRepository;
 import CV.SoftDevoluciones.Order.Repository.OrderRepository;
+import CV.SoftDevoluciones.Return.Dto.Return.ReturnClientResponse;
 import CV.SoftDevoluciones.Return.Dto.Return.ReturnRequest;
 import CV.SoftDevoluciones.Return.Entity.Return;
 import CV.SoftDevoluciones.Return.Entity.ReturnDetail;
 import CV.SoftDevoluciones.Return.Enum.ReturnStatus;
 import CV.SoftDevoluciones.Return.Repository.ReturnRepository;
-import CV.SoftDevoluciones.Return.Service.Interface.IReturnService;
+import CV.SoftDevoluciones.Return.Service.Interface.IReturnClientService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -21,12 +22,13 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class ReturnService implements IReturnService {
+public class ReturnClientService implements IReturnClientService {
 
     private final ReturnRepository returnRepository;
     private final OrderRepository orderRepository;
     private final OrderDetailRepository orderDetailRepository;
 
+    //TERMINAR¡¡¡¡
     @Override
     public Return createReturnRequest(String email, ReturnRequest request) {
 
@@ -68,32 +70,23 @@ public class ReturnService implements IReturnService {
     }
 
     @Override
-    public List<Return> getUserReturnRequestsByEmail(String email) {
-        return returnRepository.findByOrderUserEmail(email);
+    public List<ReturnClientResponse> getUserReturnRequestsByEmail(String email) {
+        List<Return> returns = returnRepository.findByOrderUserEmail(email);
+        return returns.stream().map(aReturn -> ReturnClientResponse.builder()
+                .return_id(aReturn.getId())
+                .order_id(aReturn.getOrder().getId())
+                .date(aReturn.getRequestDate())
+                .productsQuantity(aReturn.getReturnDetail().getQuantity())
+                .status(aReturn.getStatus())
+                .returnTotal(aReturn.getOrder().getTotal())
+                .build())
+                .toList();
     }
 
     @Override
-    public Return getReturnById(Long id) {
+    public Return getReturnClientById(Long id) {
         return returnRepository.findById(id)
                 .orElseThrow();
     }
 
-    @Override
-    public ReturnDetail getAllReturn() {
-        return null;
-    }
-
-    @Override
-    public Return updateReturnStatus(Long id, ReturnStatus newEstado) {
-        Return aReturn = returnRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("El ticket no existe"));
-
-        if (!aReturn.getStatus().validateWorkflow(newEstado)) {
-            throw new RuntimeException(
-                    "No se puede cambiar de " + aReturn.getStatus() + " a " + newEstado
-            );
-        }
-        aReturn.setStatus(newEstado);
-        return returnRepository.save(aReturn);
-    }
 }
