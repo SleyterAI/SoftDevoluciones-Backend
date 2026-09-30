@@ -1,4 +1,4 @@
-package CV.SoftDevoluciones.Order.Dto;
+package CV.SoftDevoluciones.Order.Dto.Order;
 
 
 import CV.SoftDevoluciones.Order.Dto.OrderDetail.OrderDetailResponseDto;

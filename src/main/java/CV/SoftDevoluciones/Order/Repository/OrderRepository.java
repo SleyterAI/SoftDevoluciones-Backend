@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
-   /* List<Order> findByUserEmail(String email);*/
+   List<Order> findByUserEmail(String email);
 
-    Optional<Order> findByUserEmail(String email);
+    /*Optional<Order> findByUserEmail(String email);*/
 }

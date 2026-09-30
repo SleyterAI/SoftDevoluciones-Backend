@@ -1,4 +1,4 @@
-package CV.SoftDevoluciones.Order.Dto;
+package CV.SoftDevoluciones.Order.Dto.Order;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

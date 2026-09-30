@@ -1,6 +1,6 @@
 package CV.SoftDevoluciones.Order.Controller;
 
-import CV.SoftDevoluciones.Order.Dto.OrderResponseDto;
+import CV.SoftDevoluciones.Order.Dto.Order.OrderResponseDto;
 import CV.SoftDevoluciones.Order.Dto.OrderSummary.OrderSummaryResponseDto;
 import CV.SoftDevoluciones.Order.Service.OrderService;
 import lombok.RequiredArgsConstructor;

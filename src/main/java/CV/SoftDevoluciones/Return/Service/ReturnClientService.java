@@ -38,10 +38,9 @@ public class ReturnClientService implements IReturnClientService {
         * se asigna tambien el return q se tiene hasta el momento
         * despues se agrega returndetail a return
         * se guarda return en bd
-        * */
-        Order order = orderRepository.findByUserEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException("Order not found"));
-
+        *
+        Order order = orderRepository.findByUserEmail(email);
+    // deberia de buscar orderdetail creoooo...
         OrderDetail orderDetail = orderDetailRepository.findById(order.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Order detail not found"));
 
@@ -66,7 +65,8 @@ public class ReturnClientService implements IReturnClientService {
                 .build();
 
         aReturn.setReturnDetail(returnDetail);
-        return returnRepository.save(aReturn);
+        return returnRepository.save(aReturn);*/
+        return null;
     }
 
     @Override
