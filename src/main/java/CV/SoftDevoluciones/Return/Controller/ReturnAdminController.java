@@ -29,7 +29,7 @@ public class ReturnAdminController {
 
     //GET By Id
     @GetMapping("/{id}")
-    public ResponseEntity<ReturnAdminResponse> getReturnClientById(@PathVariable Long id) {
+    public ResponseEntity<ReturnAdminResponse> getAdminReturnById(@PathVariable Long id) {
         return ResponseEntity.ok(returnAdminService.getReturnAdminById(id));
     }
 
@@ -52,6 +52,4 @@ public class ReturnAdminController {
         Return aReturn = returnAdminService.updateReturnStatus(id, newStatus.getStatus());
         return ResponseEntity.ok("Product Id: "+aReturn.getId()+", visible now is: "+aReturn.getStatus());
     }
-
-
 }

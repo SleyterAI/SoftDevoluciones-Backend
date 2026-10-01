@@ -44,6 +44,7 @@ public class Return {
     private Order order;
     //---------------------------------------------------------------
 
-    @OneToOne(mappedBy = "aReturn")
+    @OneToOne(mappedBy = "aReturn", cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private ReturnDetail returnDetail;
 }

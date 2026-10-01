@@ -19,6 +19,6 @@ public interface IOrderService {
     //CLIENTE
     List<OrderSummaryResponseDto> getAllClientOrders(String email);
     //CLIENTE
-    OrderDetailResponseDto getOrderDetailByUserEmail(String email);
+    OrderDetailResponseDto getOrderDetailByOrderIdAndProductId(Long orderId, Long productId);
 
 }

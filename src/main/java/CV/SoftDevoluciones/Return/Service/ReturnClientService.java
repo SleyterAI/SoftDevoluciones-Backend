@@ -5,6 +5,7 @@ import CV.SoftDevoluciones.Order.Entity.OrderDetail;
 import CV.SoftDevoluciones.Order.Repository.OrderDetailRepository;
 import CV.SoftDevoluciones.Order.Repository.OrderRepository;
 import CV.SoftDevoluciones.Return.Dto.Return.ReturnClientResponse;
+import CV.SoftDevoluciones.Return.Dto.Return.ReturnMessageCreated;
 import CV.SoftDevoluciones.Return.Dto.Return.ReturnRequest;
 import CV.SoftDevoluciones.Return.Entity.Return;
 import CV.SoftDevoluciones.Return.Entity.ReturnDetail;
@@ -14,8 +15,10 @@ import CV.SoftDevoluciones.Return.Service.Interface.IReturnClientService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,45 +32,59 @@ public class ReturnClientService implements IReturnClientService {
     private final OrderDetailRepository orderDetailRepository;
 
     //TERMINAR¡¡¡¡
+    /*
+     * se crea return y se asigna datos no enviados y enviados
+     * despues se crea returndetail y se asigna datos datos
+     * se asigna tambien el return q se tiene hasta el momento
+     * despues se agrega returndetail a return
+     * se guarda return en bd
+     **/
     @Override
-    public Return createReturnRequest(String email, ReturnRequest request) {
-
-        /*
-        * se crea return y se asigna datos no enviados y enviados
-        * despues se crea returndetail y se asigna datos datos
-        * se asigna tambien el return q se tiene hasta el momento
-        * despues se agrega returndetail a return
-        * se guarda return en bd
-        *
-        Order order = orderRepository.findByUserEmail(email);
-    // deberia de buscar orderdetail creoooo...
-        OrderDetail orderDetail = orderDetailRepository.findById(order.getId())
+    @Transactional
+    public ReturnMessageCreated createReturnRequest(String email, ReturnRequest request) {
+        OrderDetail orderDetail = orderDetailRepository.findById(request.getOrderDetail_id())
                 .orElseThrow(() -> new EntityNotFoundException("Order detail not found"));
 
-        if (!orderDetail.getOrder().getId().equals(order.getId())) {
-            throw new IllegalArgumentException("The order detail does not belong to this order");
+        Order order = orderDetail.getOrder();
+
+        if (!order.getUser().getEmail().equals(email)) {
+            throw new AccessDeniedException("The order does not belong to the user");
         }
+
+        if (request.getQuantity() <= 0) {
+            throw new IllegalArgumentException("Quantity must be greater than zero");
+        }
+
+        if (request.getQuantity() > orderDetail.getQuantity()) {
+            throw new IllegalArgumentException("Return quantity cannot exceed purchased quantity");
+        }
+
+        BigDecimal amount = orderDetail.getUnitPrice()
+                .multiply(BigDecimal.valueOf(request.getQuantity()));
 
         Return aReturn = Return.builder()
                 .requestDate(LocalDateTime.now())
                 .status(ReturnStatus.SOLICITADO)
                 .reason(request.getReason())
                 .comment(request.getComment())
-                .operatorNotes("Sin comentarios")
-                .amount(request.getAmount())
+                .operatorNotes(null)
+                .amount(amount)
                 .order(order)
                 .build();
 
         ReturnDetail returnDetail = ReturnDetail.builder()
-                .quantity(request.getReturnDetailRequest().getQuantity()) //problema
+                .quantity(request.getQuantity())
                 .orderDetail(orderDetail)
                 .aReturn(aReturn)
                 .build();
 
         aReturn.setReturnDetail(returnDetail);
-        return returnRepository.save(aReturn);*/
-        return null;
+        returnRepository.save(aReturn);
+        return ReturnMessageCreated.builder()
+                .message("Return created correctly")
+                .build();
     }
+
 
     @Override
     public List<ReturnClientResponse> getUserReturnRequestsByEmail(String email) {

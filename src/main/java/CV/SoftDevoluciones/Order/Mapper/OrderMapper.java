@@ -61,7 +61,7 @@ public class OrderMapper {
                 .build();
     }
 
-    private OrderDetailResponseDto toOrderDetailDto(OrderDetail orderDetail) {
+    public OrderDetailResponseDto toOrderDetailDto(OrderDetail orderDetail) {
 
         Product product = orderDetail.getProduct();
         Order order = orderDetail.getOrder();
@@ -70,6 +70,7 @@ public class OrderMapper {
         return OrderDetailResponseDto.builder()
 
                 // OrderDetail
+                .orderDetail_id(orderDetail.getId())
                 .orderDetail_quantity(orderDetail.getQuantity())
                 .orderDetail_unitPrice(orderDetail.getUnitPrice())
                 .orderDetail_subTotal(orderDetail.getSubTotal())

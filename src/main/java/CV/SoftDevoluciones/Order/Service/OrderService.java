@@ -5,7 +5,9 @@ import CV.SoftDevoluciones.Order.Dto.Order.OrderResponseDto;
 import CV.SoftDevoluciones.Order.Dto.OrderDetail.OrderDetailResponseDto;
 import CV.SoftDevoluciones.Order.Dto.OrderSummary.OrderSummaryResponseDto;
 import CV.SoftDevoluciones.Order.Entity.Order;
+import CV.SoftDevoluciones.Order.Entity.OrderDetail;
 import CV.SoftDevoluciones.Order.Mapper.OrderMapper;
+import CV.SoftDevoluciones.Order.Repository.OrderDetailRepository;
 import CV.SoftDevoluciones.Order.Repository.OrderRepository;
 import CV.SoftDevoluciones.Order.Service.Interface.IOrderService;
 import jakarta.persistence.EntityNotFoundException;
@@ -21,6 +23,7 @@ import java.util.List;
 public class OrderService implements IOrderService {
 
     private final OrderRepository orderRepository;
+    private final OrderDetailRepository orderDetailRepository;
     private final OrderMapper orderMapper;
 
     @Override
@@ -54,8 +57,11 @@ public class OrderService implements IOrderService {
     // yo : getorderdetail (ahi viene order)
 
     @Override
-    public OrderDetailResponseDto getOrderDetailByUserEmail(String email) {
-        return null;
+    public OrderDetailResponseDto getOrderDetailByOrderIdAndProductId(Long orderId, Long productId) {
+         OrderDetail orderDetail = orderDetailRepository
+                .findByOrderIdAndProductId(orderId, productId)
+                .orElseThrow(() -> new RuntimeException("Order detail not found"));
+        return orderMapper.toOrderDetailDto(orderDetail);
     }
 
 

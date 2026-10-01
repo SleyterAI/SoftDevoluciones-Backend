@@ -20,10 +20,9 @@ public class ReturnRequest {
     @NotBlank(message = "El comentario es obligatorio")
     private String comment;
 
-    @NotNull(message = "El amount es obligatorio")
-    private BigDecimal amount; //amount generado por el total de productos
-    //si se compro 3 se quiere devolver 2 -> 2*price = amount
+    @NotNull(message = "Quantity es obligatorio")
+    private Integer quantity;
 
     @NotNull(message = "El returndetail es obligatorio")
-    private ReturnDetailRequest returnDetailRequest;
+    private Long orderDetail_id;
 }

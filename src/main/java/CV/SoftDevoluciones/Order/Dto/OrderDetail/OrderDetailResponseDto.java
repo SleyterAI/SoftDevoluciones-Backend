@@ -12,6 +12,7 @@ import java.time.LocalDate;
 public class OrderDetailResponseDto {
 
     //Order Detail
+    private Long orderDetail_id;
     private Integer orderDetail_quantity;
     private BigDecimal orderDetail_unitPrice;
     private BigDecimal orderDetail_subTotal;

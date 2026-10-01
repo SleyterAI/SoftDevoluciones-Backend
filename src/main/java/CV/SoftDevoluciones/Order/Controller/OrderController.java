@@ -1,6 +1,8 @@
 package CV.SoftDevoluciones.Order.Controller;
 
 import CV.SoftDevoluciones.Order.Dto.Order.OrderResponseDto;
+import CV.SoftDevoluciones.Order.Dto.OrderDetail.OrderDetForProduct;
+import CV.SoftDevoluciones.Order.Dto.OrderDetail.OrderDetailResponseDto;
 import CV.SoftDevoluciones.Order.Dto.OrderSummary.OrderSummaryResponseDto;
 import CV.SoftDevoluciones.Order.Service.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -31,5 +33,12 @@ public class OrderController {
     public ResponseEntity<List<OrderSummaryResponseDto>> getAllClientOrders(Authentication authentication) {
         String email = authentication.getName();
         return ResponseEntity.ok(orderService.getAllClientOrders(email));
+    }
+
+    @GetMapping("/product/{orderId}/{productId}")
+    public ResponseEntity<OrderDetailResponseDto> getOrderDetailByOrderIdAndProductId(
+            @PathVariable Long orderId, @PathVariable Long productId) {
+        return ResponseEntity.ok(orderService.getOrderDetailByOrderIdAndProductId(
+                orderId, productId));
     }
 }

@@ -1,6 +1,7 @@
 package CV.SoftDevoluciones.Return.Controller;
 
 import CV.SoftDevoluciones.Return.Dto.Return.ReturnClientResponse;
+import CV.SoftDevoluciones.Return.Dto.Return.ReturnMessageCreated;
 import CV.SoftDevoluciones.Return.Dto.Return.ReturnRequest;
 import CV.SoftDevoluciones.Return.Entity.Return;
 import CV.SoftDevoluciones.Return.Service.ReturnClientService;
@@ -21,8 +22,8 @@ public class ReturnClientController {
     private final ReturnClientService returnClientService;
 
     @PostMapping
-    public ResponseEntity<Return> createTicket(Authentication authentication,
-                                               @Valid @RequestBody ReturnRequest returnRequest) {
+    public ResponseEntity<ReturnMessageCreated> createReturn(Authentication authentication,
+                                                             @Valid @RequestBody ReturnRequest returnRequest) {
         String email = authentication.getName();
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(returnClientService.createReturnRequest(email, returnRequest));
@@ -37,7 +38,7 @@ public class ReturnClientController {
 
     //GET: getreturnbyid - ADMIN -OPERATOR -CLIENTE
     @GetMapping("/{id}")
-    public ResponseEntity<ReturnClientResponse> getReturnClientById(@PathVariable Long id) {
+        public ResponseEntity<ReturnClientResponse> getClientReturnById(@PathVariable Long id) {
         return ResponseEntity.ok(returnClientService.getReturnClientById(id));
     }
 }
