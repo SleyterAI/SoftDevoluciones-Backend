@@ -6,6 +6,7 @@ import CV.SoftDevoluciones.Order.Dto.OrderDetail.OrderDetailResponseDto;
 import CV.SoftDevoluciones.Order.Dto.OrderSummary.OrderSummaryResponseDto;
 import CV.SoftDevoluciones.Order.Entity.Order;
 import CV.SoftDevoluciones.Order.Entity.OrderDetail;
+import CV.SoftDevoluciones.Order.Enum.OrderStatus;
 import CV.SoftDevoluciones.Order.Mapper.OrderMapper;
 import CV.SoftDevoluciones.Order.Repository.OrderDetailRepository;
 import CV.SoftDevoluciones.Order.Repository.OrderRepository;
@@ -28,7 +29,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public List<OrderSummaryResponseDto> getAllOrder() {
-        return orderRepository.findAll()
+        return orderRepository.findByStatus(OrderStatus.ENTREGADO)
                 .stream()
                 .map(orderMapper::toOrderSummaryDto)
                 .toList();
@@ -46,7 +47,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public List<OrderSummaryResponseDto> getAllClientOrders(String email) {
-        return orderRepository.findByUserEmail(email)
+        return orderRepository.findByUserEmailAndStatus(email, OrderStatus.ENTREGADO)
                 .stream()
                 .map(orderMapper::toOrderSummaryDto)
                 .toList();
