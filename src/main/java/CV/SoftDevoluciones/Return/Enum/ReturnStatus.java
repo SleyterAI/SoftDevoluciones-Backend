@@ -11,9 +11,8 @@ public enum ReturnStatus {
         return switch (this) {
             case SOLICITADO -> nuevoEstado == EN_REVISION;
             case EN_REVISION -> nuevoEstado == APROBADO;
-            case APROBADO -> nuevoEstado == COMPLETADO;
-            case COMPLETADO -> nuevoEstado == RECHAZADO;
-            case RECHAZADO -> false;
+            case APROBADO -> nuevoEstado == COMPLETADO || nuevoEstado == RECHAZADO;
+            case COMPLETADO, RECHAZADO -> false;
         };
     }
 }

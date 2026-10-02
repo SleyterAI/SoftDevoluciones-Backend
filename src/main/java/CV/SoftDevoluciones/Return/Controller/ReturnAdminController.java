@@ -1,5 +1,6 @@
 package CV.SoftDevoluciones.Return.Controller;
 
+import CV.SoftDevoluciones.Return.Dto.NoteRequest;
 import CV.SoftDevoluciones.Return.Dto.Return.ReturnAdminResponse;
 import CV.SoftDevoluciones.Return.Entity.Return;
 import CV.SoftDevoluciones.Return.Enum.ReturnStatus;
@@ -51,5 +52,11 @@ public class ReturnAdminController {
     public ResponseEntity<String> updateReturnStatus(@PathVariable Long id, @RequestBody Return newStatus) {
         Return aReturn = returnAdminService.updateReturnStatus(id, newStatus.getStatus());
         return ResponseEntity.ok("Product Id: "+aReturn.getId()+", visible now is: "+aReturn.getStatus());
+    }
+
+    @PatchMapping("/{id}/notes")
+    public ResponseEntity<String> updateOperatorNotes(@PathVariable Long id, @RequestBody NoteRequest request) {
+        Return aReturn = returnAdminService.updateOperatorNotes(id, request.getNotes());
+        return ResponseEntity.ok("Return Id: "+aReturn.getId()+", operator notes: "+aReturn.getOperatorNotes());
     }
 }

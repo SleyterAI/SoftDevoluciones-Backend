@@ -20,4 +20,6 @@ public class ReturnAdminResponse {
 
     private ReturnStatus status;
     private BigDecimal returnTotal;
+
+    private String operatorNotes;
 }

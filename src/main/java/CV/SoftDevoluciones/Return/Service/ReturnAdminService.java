@@ -42,6 +42,7 @@ public class ReturnAdminService implements IReturnAdminService {
                 .date(aReturn.getRequestDate())
                 .status(aReturn.getStatus())
                 .returnTotal(aReturn.getOrder().getTotal())
+                .operatorNotes(aReturn.getOperatorNotes())
                 .build();
     }
 
@@ -69,7 +70,7 @@ public class ReturnAdminService implements IReturnAdminService {
     @Override
     public Return updateReturnStatus(Long id, ReturnStatus newEstado) {
         Return aReturn = returnRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("El ticket no existe"));
+                .orElseThrow(() -> new RuntimeException("El return no existe"));
 
         if (!aReturn.getStatus().validateWorkflow(newEstado)) {
             throw new RuntimeException(
@@ -80,5 +81,10 @@ public class ReturnAdminService implements IReturnAdminService {
         return returnRepository.save(aReturn);
     }
 
-
+    public Return updateOperatorNotes(Long return_id, String notes){
+        Return aReturn = returnRepository.findById(return_id)
+                .orElseThrow(() -> new RuntimeException("El return no existe"));
+        aReturn.setOperatorNotes(notes);
+        return returnRepository.save(aReturn);
+    }
 }
