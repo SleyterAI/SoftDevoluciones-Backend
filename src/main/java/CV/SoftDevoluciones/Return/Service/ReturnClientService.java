@@ -59,7 +59,7 @@ public class ReturnClientService implements IReturnClientService {
             throw new IllegalArgumentException("Return quantity cannot exceed purchased quantity");
         }
 
-        BigDecimal amount = orderDetail.getUnitPrice()
+        BigDecimal amount = orderDetail.getProduct().getPrice()
                 .multiply(BigDecimal.valueOf(request.getQuantity()));
 
         Return aReturn = Return.builder()
@@ -95,7 +95,7 @@ public class ReturnClientService implements IReturnClientService {
                 .date(aReturn.getRequestDate())
                 .productsQuantity(aReturn.getReturnDetail().getQuantity())
                 .status(aReturn.getStatus())
-                .returnTotal(aReturn.getOrder().getTotal())
+                .returnTotal(aReturn.getAmount())
                 .build())
                 .toList();
     }
