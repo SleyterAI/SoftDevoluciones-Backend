@@ -27,10 +27,10 @@ public class Return {
     @Enumerated(EnumType.STRING)
     private ReturnStatus status;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 80)
     private String reason;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 100)
     private String comment;
 
     @Column(length = 50)
